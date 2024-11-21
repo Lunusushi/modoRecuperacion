@@ -1,0 +1,1 @@
+La intencion de esta carpeta es poner los htmls para que podamos ejecutarlos luego en xampp.

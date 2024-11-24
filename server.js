@@ -4,13 +4,24 @@ const cors = require("cors");
 
 const {ApolloServer, gql} = require("apollo-server-express");
 
-const usuario = require("./models/Usuario");
+//const usuario = require("./models/Usuario");
 //const Perfil = require("./models/perfil");
+
+const Administrador = require("./models/administrador")
+const Cajero = require("./models/cajero")
+const Funcionario = require("./models/funcionario")
+const Informe = require("./models/informe")
+const PerfilFuncionario = require("./models/perfilFuncionario")
+const PermisosGen = require("./models/permisosGen")
+const TipoVale = require("./models/tipoVale")
+const Turno = require("./models/turno")
+const Vale = require("./models/vale")
+
 const { graphql } = require("graphql");
 
 mongoose.connect("mongodb://localhost:27017/graphQL"); //No se como van a llamar a sus db, pero lo wa dejal asi
 
-
+/*
 const typeDefs = gql`
 type Usuario{
     id: ID!
@@ -58,6 +69,118 @@ type Mutation{
     delVales(id: ID!): Alert
 }
 `
+*/
+const typeDefs = gql`
+type Administrador{
+    id: ID!
+    nombre: String!
+    user: String!
+    pass: String!
+}
+input AdministradorInput{
+    nombre: String!
+    user: String!
+    pass: String!
+type Cajero{
+    id: ID!
+    lugar: String!
+    ventas: String!
+    vale: Vale
+}
+input CajeroInput{
+    lugar: String!
+    ventas: String!
+    vale: Vale
+}
+type Funcionario{
+    id: ID!
+    nombre: String!
+    user: String!
+    pass: String!
+    vale: [Vale]
+    perfil: PerfilFuncionario
+    turno: [Turno]
+    permisosGen: PermisosGeneracion
+}
+input FuncionarioInput{
+    nombre: String!
+    user: String!
+    pass: String!
+    vale: [Vale]
+    perfil: PerfilFuncionario
+    turno: [Turno]
+    permisosGen: PermisosGeneracion
+}
+type Informe{
+    id: ID!
+    fecha: String!
+    hora: String!
+    lugar: String!
+    emitidos: [Vale]
+}
+input InformeInput{
+    fecha: String!
+    hora: String!
+    lugar: String!
+    emitidos: [Vale]
+}
+type PerfilFuncionario{
+    id: ID!
+    cargo: String!
+    factorValor: String!
+}
+input PerfilFuncionarioInput{
+    cargo: String!
+    factorValor: String!
+}
+type PermisosGen{
+    id: ID!
+    limiteTurno: Number!
+    esLimitado: Boolean!
+    funcionario: Funcionario
+    tipo: [TipoVale]
+}
+input PermisosGenInput{
+    limiteTurno: Number!
+    esLimitado: Boolean!
+    funcionario: Funcionario
+    tipo: [TipoVale]
+}
+type TipoVale{
+    id: ID!
+    valorBase: Number!
+    turno: Turno
+}
+input TipoValeInput{
+    valorBase: Number!
+    turno: Turno
+}
+type Turno{
+    id: ID!
+    nombre: String!
+    horaIni: String!
+    horaFin: String!
+}
+input Turnoinput{
+    nombre: String!
+    horaIni: String!
+    horaFin: String!
+}
+type Vale{
+    id: ID!
+    valor: Number!
+    canjeado: Boolean!
+    tipo: TipoVale
+    funcionario: Funcionario
+}
+input ValeInput{
+    valor: Number!
+    canjeado: Boolean!
+    tipo: TipoVale
+    funcionario: Funcionario
+}
+`
+
 //no se puede llenar esto sin los typedefs
 const resolvers = {
     Query: {

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const informeSchema = mongoose.Schema({
-    fecha: String,
-    hora: String,
-    lugar: String,
+    fecha: {type: String, required : true},
+    hora: {type: String, required : true},
+    lugar: {type: String, required : true},
     emitidos: [{type: mongoose.Schema.Types.ObjectId, ref: "Vale"}]
 });
 

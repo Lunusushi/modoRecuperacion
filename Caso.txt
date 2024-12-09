@@ -1,0 +1,17 @@
+Sistema de Emisión y Control de Vales de Alimentación:
+	Solución Propuesta:
+		- Automatizar el sistema de vales.
+		- Características clave:
+			+ Emisión automatizada en tótems para cada turno.
+			+ Registro del uso y emisión de vales en una base de datos.
+			+ Generación de informes automáticos sobre vales emitidos, utilizados y no utilizados.
+			+ Personalización del servicio según el horario y perfil del usuario.
+			+ Posibilidad de extender servicios de alimentación.
+	Funcionalidades del Producto:
+		+ Autenticación obligatoria de todos los usuarios.
+		+ Impresión rápida de vales (menos de 2 segundos por persona).
+		+ Registros completos de emisión y consumo en una base de datos.
+		+ Administración de tipos de usuario y emisión de vales adicionales.
+		+ Compatibilidad para servicios en diferentes sucursales en línea.
+		+ Notificaciones semanales sobre el estado de los vales por correo electrónico.
+		+ Interacción con el sistema para el registro de productos consumidos y manejo de saldo del vale.
